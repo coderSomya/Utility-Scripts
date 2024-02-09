@@ -9,11 +9,11 @@ def enhance_image(image_path, enhancement_factor=2.0):
     enhancer = ImageEnhance.Color(image)
     # enhancer = ImageEnhance.Brightness(image)
     enhanced_image = enhancer.enhance(enhancement_factor)
-    enhanced_image.save('high_quality.jpg')
+    enhanced_image.save('new_bg.png')
 
     return enhanced_image
 
-original_image_path = 'low_quality.jpg'
+original_image_path = 'bg.png'
 
 
 enhancement_factor = 2.0
