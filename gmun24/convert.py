@@ -44,7 +44,7 @@ def main():
             generate_svg(name, com, template_path, output_file)
             count+=1
             if Teammate and Teammate.strip().lower() !='none':
-                generate_svg(Teammate, com, template_path, output_file)
+                generate_svg(Teammate, com, template_path, f"{Teammate}_{com}.svg")
                 count+=1
 
     print(count)
