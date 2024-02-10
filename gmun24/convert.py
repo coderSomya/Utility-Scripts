@@ -2,6 +2,29 @@ import csv
 import os
 from xml.etree import ElementTree as ET
 
+
+import csv
+
+def create_name_set_from_csv(file_path, name_column_index=0):
+
+   name_set = set()
+
+   with open(file_path, 'r') as csvfile:
+       reader = csv.reader(csvfile)
+       for row in reader:
+           if row:
+             name = row[0]
+             name = name.strip().lower()
+             name_set.add(name)
+             print(name)
+
+   return name_set
+
+file_path = "winners.csv"
+winners = create_name_set_from_csv(file_path)
+print(winners, len(winners))
+
+
 def generate_svg(name, com, template_path, output_path):
     
 
@@ -24,6 +47,10 @@ def generate_svg(name, com, template_path, output_path):
     except Exception as e:
         print(f"Error generating SVG: {e}")
 
+
+check = set()
+
+
 def main():
     
 
@@ -41,17 +68,27 @@ def main():
         for row in reader:
             Country,name,Teammate,com = row
             output_file = os.path.join(output_folder, f"{name}_{com}.svg")
-            generate_svg(name, com, template_path, output_file)
-            count+=1
+            if name.strip().lower() in winners:
+                 check.add(name)
+            else: 
+                generate_svg(name, com, template_path, output_file)
+                count+=1
+
             if Teammate and Teammate.strip().lower() !='none':
                 output_file = os.path.join(output_folder, f"{name}_{com}.svg")
-                generate_svg(Teammate, com, template_path, output_file)
-                count+=1
+
+                if name.strip().lower() in winners:
+                   check.add(name)
+                else: 
+                    generate_svg(Teammate, com, template_path, output_file)
+                    count+=1
 
     print(count)
 
 
-
-
 if __name__ == "__main__":
     main()
+    
+    print("checking for winners.....")
+    print(check)
+    print("finished...............")
