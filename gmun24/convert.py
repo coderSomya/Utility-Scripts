@@ -67,7 +67,7 @@ def main():
 
         for row in reader:
             Country,name,Teammate,com = row
-            output_file = os.path.join(output_folder, f"{name}_{com}.svg")
+            output_file = os.path.join(output_folder, f"{name}.svg")
             if name.strip().lower() in winners:
                  check.add(name)
             else: 
@@ -75,7 +75,7 @@ def main():
                 count+=1
 
             if Teammate and Teammate.strip().lower() !='none':
-                output_file = os.path.join(output_folder, f"{name}_{com}.svg")
+                output_file = os.path.join(output_folder, f"{Teammate}.svg")
 
                 if name.strip().lower() in winners:
                    check.add(name)
