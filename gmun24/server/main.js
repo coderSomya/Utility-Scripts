@@ -7,11 +7,11 @@ const transporter = nodemailer.createTransport({
   secure: false,
   auth: {
     user: 'isomya13@gmail.com',
-    pass: '',
+    pass: 'npeoscqosmijfggs',
   },
 });
 
-const getCertificateData = (certi) => {
+const getCertificateData = (certi) => { //path of the certi
   const filePath = certi; // Update the path accordingly
   const fs = require('fs');
   try{
@@ -79,12 +79,13 @@ const sendCertificate = (email, name, certi) => {
 };
 
 // Read participant details from participants.json
-const participantsData = fs.readFileSync('../kgp_participants.json', 'utf-8');
+const participantsData = fs.readFileSync('../cq_delegates.json', 'utf-8');
 const participantsArray = JSON.parse(participantsData);
 
 // Send emails to participants
 participantsArray.forEach((participant) => {
   sendCertificate(participant.email, participant.name, participant.certi);
 });
+
 
 console.log('Emails sent to all participants!');

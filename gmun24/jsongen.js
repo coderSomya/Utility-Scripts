@@ -1,7 +1,7 @@
 const fs = require('fs');
 const xlsx = require('xlsx');
 
-const workbook = xlsx.readFile('merge/data_kgp.xlsx');
+const workbook = xlsx.readFile('merge/cq_delegates.xlsx');
 const sheetName = workbook.SheetNames[0];
 const worksheet = workbook.Sheets[sheetName];
 
@@ -25,6 +25,6 @@ function processParticipant(participant) {
 const participantsArray = jsonData.map(processParticipant);
 
 // Write the JSON array to a file
-fs.writeFileSync('kgp_participants.json', JSON.stringify(participantsArray, null, 2));
+fs.writeFileSync('cq_delegates.json', JSON.stringify(participantsArray, null, 2));
 
 console.log('JSON file created successfully.');
